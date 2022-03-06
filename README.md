@@ -13,3 +13,5 @@
 Чтобы запустить javaDoc, нужно указать кодировку
 
 `-encoding UTF-8 -charset UTF-8 -docencoding UTF-8`
+
+![example](src/main/reources/example.png)
