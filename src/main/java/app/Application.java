@@ -2,7 +2,12 @@ package app;
 
 import io.github.humbleui.jwm.*;
 import io.github.humbleui.jwm.skija.EventFrameSkija;
+import io.github.humbleui.skija.Canvas;
+import io.github.humbleui.skija.Paint;
+import io.github.humbleui.skija.RRect;
 import io.github.humbleui.skija.Surface;
+import misc.CoordinateSystem2i;
+import misc.Misc;
 
 import java.io.File;
 import java.util.function.Consumer;
@@ -17,6 +22,10 @@ public class Application implements Consumer<Event> {
      * окно приложения
      */
     private final Window window;
+    /**
+     * отступы панелей
+     */
+    private static final int PANEL_PADDING = 5;
 
     /**
      * Конструктор окна приложения
@@ -52,7 +61,7 @@ public class Application implements Consumer<Event> {
                 window.setLayer(layer);
                 break;
             } catch (Exception e) {
-              System.out.println("Ошибка создания слоя " + className);
+                System.out.println("Ошибка создания слоя " + className);
             }
         }
 
@@ -77,9 +86,40 @@ public class Application implements Consumer<Event> {
             App.terminate();
         } else if (e instanceof EventWindowCloseRequest) {
             window.close();
-        }else if (e instanceof EventFrameSkija ee) {
+        } else if (e instanceof EventFrameSkija ee) {
             Surface s = ee.getSurface();
-            s.getCanvas().clear(APP_BACKGROUND_COLOR);
+            paint(s.getCanvas(), new CoordinateSystem2i(s.getWidth(), s.getHeight()));
         }
+    }
+
+    /**
+     * Рисование
+     *
+     * @param canvas   низкоуровневый инструмент рисования примитивов от Skija
+     * @param windowCS СК окна
+     */
+    public void paint(Canvas canvas, CoordinateSystem2i windowCS) {
+        // запоминаем изменения (пока что там просто заливка цветом)
+        canvas.save();
+        // очищаем канвас
+        canvas.clear(APP_BACKGROUND_COLOR);
+
+        // восстанавливаем состояние канваса
+        canvas.restore();
+        // координаты левого верхнего края окна
+        int rX = windowCS.getSize().x / 3;
+        int rY = windowCS.getSize().y / 3;
+        // ширина и высота
+        int rWidth =  windowCS.getSize().x  / 3;
+        int rHeight = windowCS.getSize().y  / 3;
+        // создаём кисть
+        Paint paint = new Paint();
+        // задаём цвет рисования
+        paint.setColor(Misc.getColor(100, 255, 255, 255));
+        // рисуем квадрат
+        canvas.drawRRect(RRect.makeXYWH(rX, rY, rWidth, rHeight, 4), paint);
+
+        // восстанавливаем состояние канваса
+        canvas.restore();
     }
 }
