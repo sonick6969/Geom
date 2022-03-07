@@ -137,22 +137,13 @@ public class CoordinateSystem2i {
     /**
      * Строковое представление объекта вида:
      *
-     * @return "CoordinateSystem2i{getString()}"
+     * @return "CoordinateSystem2i{min, max}"
      */
     @Override
     public String toString() {
-        return "CoordinateSystem2i{" + getString() + '}';
+        return "CoordinateSystem2i{" + min + ", " + max + '}';
     }
 
-    /**
-     * Строковое представление объекта вида:
-     * "min, max"
-     *
-     * @return строковое представление объекта
-     */
-    protected String getString() {
-        return min + ", " + max;
-    }
 
     /**
      * Проверка двух объектов на равенство
