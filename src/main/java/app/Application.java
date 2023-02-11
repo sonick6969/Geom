@@ -46,6 +46,7 @@ public class Application implements Consumer<Event> {
         // создаём окно
         window = App.makeWindow();
         // задаём обработчиком событий текущий объект
+
         window.setEventListener(this);
         // задаём заголовок
         window.setTitle("Java 2D");
@@ -53,8 +54,8 @@ public class Application implements Consumer<Event> {
         window.setWindowSize(900, 900);
         // задаём его положение
         window.setWindowPosition(100, 100);
-        // задаём иконку
-        label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!", true, true);
+        label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 1, 1, 1, 1, "Привет, мир!", true, true);
 
         switch (Platform.CURRENT) {
             case WINDOWS -> window.setIcon(new File("src/main/resources/windows.ico"));
@@ -124,7 +125,7 @@ public class Application implements Consumer<Event> {
         canvas.clear(APP_BACKGROUND_COLOR);
 
         // рисуем заголовок в точке [100,100] с шириной и выостой 200
-        label.paint(canvas, new CoordinateSystem2i(100, 100, 200, 200));
+        label.paint(canvas, new CoordinateSystem2i(100, 100, 600, 600));
 
         // восстанавливаем состояние канваса
         canvas.restore();
