@@ -32,9 +32,11 @@ public class Application implements Consumer<Event> {
      * радиус скругления элементов
      */
     public static final int C_RAD_IN_PX = 4;
+
     /**
      * Первый заголовок
      */
+
     private final Label label;
 
     /**
@@ -52,7 +54,7 @@ public class Application implements Consumer<Event> {
         // задаём его положение
         window.setWindowPosition(100, 100);
         // задаём иконку
-        label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!");
+        label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING, "Привет, мир!", true, true);
 
         switch (Platform.CURRENT) {
             case WINDOWS -> window.setIcon(new File("src/main/resources/windows.ico"));
@@ -120,11 +122,12 @@ public class Application implements Consumer<Event> {
         canvas.save();
         // очищаем канвас
         canvas.clear(APP_BACKGROUND_COLOR);
-        // рисуем заголовок
-        label.paint(canvas, windowCS);
-        // восстанавливаем состояние канваса
-        canvas.restore();
+
         // рисуем заголовок в точке [100,100] с шириной и выостой 200
         label.paint(canvas, new CoordinateSystem2i(100, 100, 200, 200));
+
+        // восстанавливаем состояние канваса
+        canvas.restore();
+
     }
 }
