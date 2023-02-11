@@ -22,6 +22,7 @@ public class CoordinateSystem2i {
      */
     private final Vector2i size;
 
+
     /**
      * Конструктор ограниченной двумерной целочисленной системы координат
      *
