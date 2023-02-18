@@ -36,8 +36,18 @@ public class Application implements Consumer<Event> {
     /**
      * Первый заголовок
      */
-
     private final Label label;
+
+    /**
+     * Первый заголовок
+     */
+    private final Label label2;
+    /**
+     * Первый заголовок
+     */
+    private final Label label3;
+
+
 
     /**
      * Конструктор окна приложения
@@ -56,6 +66,13 @@ public class Application implements Consumer<Event> {
         window.setWindowPosition(100, 100);
         label = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
                 4, 4, 1, 1, 1, 1, "Привет, мир!", true, true);
+        // создаём второй заголовок
+        label2 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 0, 3, 1, 1, "Второй заголовок", true, true);
+
+        // создаём третий заголовок
+        label3 = new Label(window, true, PANEL_BACKGROUND_COLOR, PANEL_PADDING,
+                4, 4, 2, 0, 1, 1, "Это тоже заголовок", true, true);
 
         switch (Platform.CURRENT) {
             case WINDOWS -> window.setIcon(new File("src/main/resources/windows.ico"));
@@ -125,7 +142,12 @@ public class Application implements Consumer<Event> {
         canvas.clear(APP_BACKGROUND_COLOR);
 
         // рисуем заголовок в точке [100,100] с шириной и выостой 200
-        label.paint(canvas, new CoordinateSystem2i(100, 100, 600, 600));
+        label.paint(canvas, windowCS);
+
+        // рисуем второй заголовок
+        label2.paint(canvas, windowCS);
+        // рисуем третий заголовок
+        label3.paint(canvas, windowCS);
 
         // восстанавливаем состояние канваса
         canvas.restore();
