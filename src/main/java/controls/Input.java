@@ -216,6 +216,21 @@ public class Input extends GridPanel {
             return false;
         }
     }
+    /**
+     * Получить вещественное значение из поля ввода
+     *
+     * @return возвращает значение, если всё ок, в противном случае вернёт 0
+     */
+    public double doubleValue() {
+        try {
+            // для правильной конвертации, если нужно, заменяем плавающую запятую
+            // на плавающую точку
+            return Double.parseDouble(text.replace(",", "."));
+        } catch (NumberFormatException e) {
+            System.out.println("ошибка преобразования");
+        }
+        return 0;
+    }
 
     /**
      * Задать текст
