@@ -79,20 +79,21 @@ public class PanelRendering extends GridPanel {
                     // обрабатываем клик по задаче
                     task.click(lastWindowCS.getRelativePos(lastMove), ee.getButton());
             }
-            /**
-             * Сохранить файл
-             */
-            public static void save() {
-                PanelLog.info("save");
-            }
 
-            /**
-             * Загрузить файл
-             */
-            public static void load() {
-                PanelLog.info("load");
-            }
         }
+    }
+    /**
+     * Сохранить файл
+     */
+    public static void save() {
+        PanelLog.info("save");
+    }
+
+    /**
+     * Загрузить файл
+     */
+    public static void load() {
+        PanelLog.info("load");
     }
     /**
      * Обработчик событий
